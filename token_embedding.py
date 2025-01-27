@@ -10,7 +10,6 @@ if __name__ == '__main__':
 
     # General idea/pipeline: Input text -> Tokenized text -> Token IDs -> Token embeddings + Positional embeddings ->Input embeddings
 
-
     DOC_PATH = '/Users/omoultos/coding/build_LLMs/the-verdict.txt'
     with open(DOC_PATH, 'r', encoding='utf-8') as f:
         raw_text = f.read()
