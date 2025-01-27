@@ -84,10 +84,13 @@ def attention_weights_mat_mul(inputs = inputs):
     
 def print_attn():
     scores, weights, check, context_vec = attention_weights_mat_mul()
-    print(f'\nattentions scores\n{60*"-"}\n{scores}')
-    print(f'\nattention weights\n{60*"-"}\n{weights}')
+    print(f'\n\nInformation on the shapes of the matrices\n{80*"-"}')
+    print(f'Shape of inputs: {inputs.shape} | Shape of attention scores: {scores.shape}')
+    print(f'Shape of attention weights: {weights.shape} | Shape of context vectors: {context_vec.shape}')
+    print(f'\nattentions scores (inputs @ inputs.T)\n{60*"-"}\n{scores}')
+    print(f'\nattention weights (softmax normalized attn scores)\n{60*"-"}\n{weights}')
     print(f'\nSum of each column of attention weights: {check}')
-    print(f'\ncontext vectors\n{35*"-"}\n{context_vec}')
+    print(f'\nContext vectors (attn weights @ inputs)\n{40*"-"}\n{context_vec}')
 
 
 if __name__ == '__main__':
