@@ -31,14 +31,36 @@ def second_input_element_only():
     keys = inputs @ W_key
     values = inputs @ W_value
 
+    # attn score ω_22
+    keys_2 = keys[1]
+    attn_score_22 = query_2.dot(keys_2)
+
+    # for all attn scores ω2x
+    attn_scores_2 = query_2 @ keys.T
+
+    # to get the attn_weights
+    dim_k = keys.shape[-1]
+    # scaled-dot product attention, i.e., to avoid small gradients in training
+    attn_weights_2 = torch.softmax(attn_scores_2 / dim_k**0.5, dim=-1)  
+
+    # to get the context vector z(2)
+    context_vector_2 = attn_weights_2 @ values
+
+
+
+
     # print(x_2, dim_in)
     # print(W_query, W_key, W_value)
     # print(f'shape of x_2={x_2.shape}, shape of W_q={W_query.shape}')
     # print(f'\n\nquery_2 = {x_2} @ {W_query} = {query_2}')
-
     print(f'\nTshape of inputs: {inputs.shape}')
     print(f'shape of keys tensor: {keys.shape}')
     print(f'shape of values tensor: {values.shape}')
+    print(f'\nattention score ω22 = {attn_score_22:.4f}')
+    print(f'\nattention scores ω2x =  {attn_scores_2}')
+    print(f'\nattention weights a2x =  {attn_weights_2}')
+    print(f'\ncontext vector z(2) =  {context_vector_2}')
+
 
 
 
