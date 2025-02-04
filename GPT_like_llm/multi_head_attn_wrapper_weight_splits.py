@@ -10,7 +10,7 @@ class MultiHeadAttention(nn.Module):
                  context_length,
                  dropout,
                  num_heads,
-                 gkv_bias=False
+                 qkv_bias=False
                  ):
         super().__init__()
         assert (d_out % num_heads == 0), \
@@ -20,9 +20,9 @@ class MultiHeadAttention(nn.Module):
         self.num_heads = num_heads
         self.head_dim = d_out // num_heads  # floor division (returns smaller equal integer)
 
-        self.W_query  = nn.Linear(d_in, d_out, gkv_bias)
-        self.W_key    = nn.Linear(d_in, d_out, gkv_bias)
-        self.W_value  = nn.Linear(d_in, d_out, gkv_bias)
+        self.W_query  = nn.Linear(d_in, d_out, qkv_bias)
+        self.W_key    = nn.Linear(d_in, d_out, qkv_bias)
+        self.W_value  = nn.Linear(d_in, d_out, qkv_bias)
         self.out_proj = nn.Linear(d_out, d_out)
         self.dropout  = nn.Dropout(dropout)  # dropout mask to reduce overfitting
 
@@ -81,7 +81,7 @@ if __name__ == '__main__':
     DROPOUT = 0.0
     NUM_HEADS = 2
 
-    mha = MultiHeadAttention(DIM_IN, DIM_OUT, CONTEXT_LEN, DROPOUT, NUM_HEADS)
+    mha = MultiHeadAttention(DIM_IN, DIM_OUT, CONTEXT_LEN, DROPOUT, NUM_HEADS, False)
     context_vecs = mha(batch)
 
     print(f'\nShape of final (concatenated context vector Z: {context_vecs.shape})')
