@@ -2,6 +2,12 @@ import torch
 import torch.nn as nn
 
 class LayerNorm(nn.Module):
+    """The main idea behind layer normalization (not the same as batch normalization) is to 
+    adjust the activations (outputs) of a neural network layer to have a mean of 0 and a 
+    variance of 1 (unit variance). This adjustment speeds up the convergence to effective 
+    weights and ensures consistent, reliable training. In GPT-2 and modern transformer
+    architectures, layer normalization is typically applied before and after the multi-head
+    attention module."""
     def __init__(self, emb_dim):
         super().__init__()
         self.eps = 1e-5
