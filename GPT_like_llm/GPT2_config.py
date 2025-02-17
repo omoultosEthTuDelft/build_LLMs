@@ -1,4 +1,4 @@
-# def gpt_config():
+
 GPT_CONFIG_124M = {
     'vocab_size'    : 50257,    # Vocabulary size
     'context_length': 1024,     # Context length, i.e., max numbrer of input tokens the model can handle via positional embeddings
@@ -9,4 +9,4 @@ GPT_CONFIG_124M = {
     'qkv_bias'      : False     # Query-Key-Value bias, i.e., bias vector in the Linear layers of multi-head attention for QKV computations
 }
 
-    # return GPT_CONFIG_124M
+
