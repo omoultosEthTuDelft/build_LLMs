@@ -37,10 +37,12 @@ if __name__ == '__main__':
     
     print()
     print('Custom metrics by me:')
+    print(90*'=')
     print(f'Total number of parameters: {total_params}')
     print(f'Number of trainable parameters (considering weight tying): {total_params_gpt2}')
 
     print(f'Token embedding layer shape: {model.tok_emb.weight.shape}')
     print(f'Output layer shape: {model.out_head.weight.shape}')
+    print(90*'=')
 
 
