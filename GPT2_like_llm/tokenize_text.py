@@ -15,14 +15,14 @@ def tokenize_text(doc: str):
 
     vocab = {token: integer for integer, token in enumerate(all_tokens)}
     
-    switch_print_vocab = False
+    switch_print_vocab = False 
     if switch_print_vocab:
         print(f'dictionary size: {len(vocab.items())}')
         # for i, item in enumerate(vocab.items()):
         #     print(item)
         #     if i>= 50: break
         for i, item in enumerate(list(vocab.items())[-5:]): print(item)
-    
+     
     switch_num_characters = False
     if switch_num_characters:
         print(f'number of none-space characters {len(preprocessed)}')
@@ -35,13 +35,14 @@ def tokenize_text(doc: str):
         print(vocab_size)
         print(all_tokens)
 
-    return vocab
+    return raw_text, vocab
 
 
 
 if __name__ == '__main__':
     DOC_PATH = '/Users/omoultos/coding/build_LLMs/the-verdict.txt'
-    vocab = tokenize_text(DOC_PATH)
+    text_data, vocab = tokenize_text(DOC_PATH)
+    # print(text_data)
 
 
 
