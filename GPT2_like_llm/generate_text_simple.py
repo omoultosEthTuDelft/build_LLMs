@@ -12,7 +12,6 @@ def generate_text_simple(model, idx, max_new_tokens, context_size):  # idx(batch
         probs = torch.softmax(logits, dim=-1) # probs has shape (batch, vocab_size) - logits to probabilities
         idx_next = torch.argmax(probs, dim=-1, keepdim=True) # idx_next has shape (batch, 1) - selects the arg with the highest probability
         idx = torch.cat((idx, idx_next), dim=1)    # idx has shape (batch, n_tokens+1)
-
     return idx
 
 def text_to_token_ids(text, tokenizer):
