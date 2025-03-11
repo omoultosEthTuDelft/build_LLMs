@@ -7,7 +7,7 @@ from dataloader_tokenize import create_dataloader_v1
 from GPT2_config import GPT_CONFIG_124M
 from calculate_loss import calc_loss_batch, calc_loss_loader
 from GPT_model import GPTModel
-from generate_text_simple import generate_text_simple, text_to_token_ids, token_ids_to_text
+from generate_text_TandtopK_sampling import generate_text, text_to_token_ids, token_ids_to_text
 from plot_losses import plot_losses 
 
 def train_model_simple(model,
@@ -78,7 +78,7 @@ def generate_and_print_sample(model, tokenizer, device, start_context):
     encoded = text_to_token_ids(start_context, tokenizer).to(device)
     
     with torch.no_grad():
-        token_ids = generate_text_simple(
+        token_ids = generate_text(
             model = model, 
             idx = encoded, 
             max_new_tokens=50, 
@@ -87,9 +87,6 @@ def generate_and_print_sample(model, tokenizer, device, start_context):
     decoded_text = token_ids_to_text(token_ids, tokenizer)
     print(decoded_text.replace('\n', ' '))
     model.train()
-
-
-
 
 
 
